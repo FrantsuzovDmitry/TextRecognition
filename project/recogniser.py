@@ -2,7 +2,6 @@ from requests import (
     post,
     Response,
 )
-from datetime import datetime
 from werkzeug.datastructures import FileStorage
 
 
@@ -23,17 +22,10 @@ class RecogniserClient:
             }
         )
 
-        start_time = datetime.now()
-
         response: Response = post(
             self.url,
             files=self.files,
             headers=self.headers
         )
-
-        execution_time: str = str(datetime.now() - start_time)
-
-        with open('time_tracking.txt', 'a') as f:
-            f.write('API request-response time: ' + execution_time + '\n')
 
         return response.json()
