@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Img-to-text</title>
+    <link rel="stylesheet" href="../static/result.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jura&display=swap" rel="stylesheet">
 </head>
 <body>
-  {{data}}
+    <div class="wrapper">
+        <div class="container">
+
+            <h1>Полученный текст</h1>
+
+            <div class="textarea">
+                <textarea>{{data}}</textarea>
+            </div>
+           
+            <button class="btn-back"><a href="/">Назад</a></button>
+
+        </div>
+    </div> 
 </body>
 </html>
