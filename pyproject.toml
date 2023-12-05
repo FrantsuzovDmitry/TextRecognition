@@ -9,6 +9,8 @@ readme = "README.md"
 python = "^3.10"
 requests = "^2.31.0"
 flask = "^3.0.0"
+pytest = "^7.4.3"
+gunicorn = {extras = ["gevent"], version = "^21.2.0"}
 
 
 [build-system]

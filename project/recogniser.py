@@ -1,3 +1,5 @@
+import base64
+
 from requests import (
     post,
     Response,
@@ -14,18 +16,20 @@ class RecogniserClient:
             'X-RapidAPI-Host': 'img-to-text1.p.rapidapi.com',
         }
 
-    def recognise(self, photo: FileStorage) -> Response.json:
+    def recognise(self, photo: FileStorage) -> Response:
         file: bytes = photo.stream.read()
+        # file: bytes = base64.b64decode(photo.stream.read()) # for Apache Benchmark
+
         self.files.update(
             {
-                'image': file
-            }
+                'image': file,
+            },
         )
 
         response: Response = post(
-            self.url,
+            url=self.url,
             files=self.files,
-            headers=self.headers
+            headers=self.headers,
         )
 
-        return response.json()
+        return response
