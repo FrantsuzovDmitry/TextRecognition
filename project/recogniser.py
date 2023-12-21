@@ -1,8 +1,9 @@
+import base64
+
 from requests import (
     post,
     Response,
 )
-from datetime import datetime
 from werkzeug.datastructures import FileStorage
 
 
@@ -15,25 +16,20 @@ class RecogniserClient:
             'X-RapidAPI-Host': 'img-to-text1.p.rapidapi.com',
         }
 
-    def recognise(self, photo: FileStorage) -> Response.json:
+    def recognise(self, photo: FileStorage) -> Response:
         file: bytes = photo.stream.read()
+        # file: bytes = base64.b64decode(photo.stream.read()) # for Apache Benchmark
+
         self.files.update(
             {
-                'image': file
-            }
+                'image': file,
+            },
         )
-
-        start_time = datetime.now()
 
         response: Response = post(
-            self.url,
+            url=self.url,
             files=self.files,
-            headers=self.headers
+            headers=self.headers,
         )
 
-        execution_time: str = str(datetime.now() - start_time)
-
-        with open('time_tracking.txt', 'a') as f:
-            f.write('API request-response time: ' + execution_time + '\n')
-
-        return response.json()
+        return response

@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: TextRecognition
+    build:
+      context: .
+    command:
+      - sh
+      - -xec
+      - |
+          gunicorn -b 0.0.0.0:8000 project.main:app -t 0 -w 2 -k gevent --worker-connections 100
+    working_dir: /TextRecognition/
+    volumes:
+      - .:/TextRecognition/
+      - .cache:/root/.cache
+    ports:
+      - "8000:8000"
