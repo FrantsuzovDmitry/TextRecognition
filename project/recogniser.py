@@ -12,7 +12,7 @@ class RecogniserClient:
         self.url: str = 'https://img-to-text1.p.rapidapi.com/api/2d3652243be692de40304031b868aea0'
         self.files: dict = {}
         self.headers: dict = {
-            'X-RapidAPI-Key': 'bfea5bdeeemsh335a3af6d5ce6f2p1fa505jsn5c83d42a3675',
+            'X-RapidAPI-Key': '3e206a5515msh8dc6feebe272ac1p1bab71jsn725382c87289',
             'X-RapidAPI-Host': 'img-to-text1.p.rapidapi.com',
         }
 
